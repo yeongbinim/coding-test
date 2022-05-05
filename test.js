@@ -1,6 +1,3 @@
-console.log(score);
+let arr = new Array(100).fill(3);
 
-score = 80;
-var score;
-
-console.log(score);
+console.log(arr);

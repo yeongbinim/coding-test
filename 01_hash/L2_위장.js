@@ -4,7 +4,7 @@ function solution(clothes){
 
 	for(let i = 0; i < clothes.length; i++)
 		hashMap.set(clothes[i][1], (hashMap.get(clothes[i][1]) || 0) + 1);
-	for(let [j, k] of hashMap)
+	for(let k of hashMap.values())
 		num *= k + 1;
 	console.log(hashMap);
 	return num - 1;

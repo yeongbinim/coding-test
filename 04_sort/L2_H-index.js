@@ -1,9 +1,7 @@
 function solution(citations) {
 	let hIndex = citations.length;
 	citations.sort((a, b) => {return (b - a)});
-	console.log(citations);
-    while (true){
-		console.log(hIndex);
+    while (hIndex){
 		if (hIndex <= citations[hIndex - 1])
 			break;
 		hIndex -= 1;
