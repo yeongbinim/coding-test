@@ -12,7 +12,6 @@ function solution(n, computers) {
 	let answer = 0;
 	for (let i = 0; i < n; i++){
 		if (!visit[i]){
-			console.log(visit);
 			dfs(computers, visit, i);
 			answer += 1;
 		}
