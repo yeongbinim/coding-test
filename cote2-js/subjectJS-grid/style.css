@@ -1,0 +1,31 @@
+html,
+body {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.App {
+  margin: 0 auto;
+}
+
+.App table {
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+
+.App table thead tr {
+  border-bottom: 2px solid #111;
+}
+
+.App table thead tr th {
+  padding: 8px;
+}
+
+.App table td {
+  padding: 8px 8px;
+}
+
+.matched {
+  background-color: thistle;
+  display: inline-block;
+}

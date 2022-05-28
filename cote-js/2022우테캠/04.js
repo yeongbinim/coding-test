@@ -19,9 +19,17 @@ const dict = [
 	['g', 'q'],
 ];
 
+//이거 dfs였네
 //word를 dict에 해당하는 문자열로 변환 후에 가능한 모든 문자열들을 반환
 function transform(word){
 	const wordArr = new Array();
+	for (let i = 0; i < word.length; i++){
+		let temp = dict[parseInt(word[i])];
+		let result = "";
+		for (let d of temp)
+			result.concat(d);
+		
+	}
 	return wordArr;
 }
 

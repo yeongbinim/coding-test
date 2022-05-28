@@ -1,0 +1,1 @@
+Hi, this is the example of homework 3. Homework 3 is the WordCount program. Please count the number of each word.
