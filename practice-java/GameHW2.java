@@ -1,8 +1,6 @@
-package HW;
-
 import java.util.Scanner;
 
-public class Game {
+public class GameHW2 {
     static private char map[][];
     static private int count = 0;
     static void inputThief(Scanner scanner, Thief thief){

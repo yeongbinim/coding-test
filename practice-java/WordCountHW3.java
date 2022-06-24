@@ -1,9 +1,7 @@
-package HW.HW3;
-
 import java.util.*;
 import java.io.*;
 
-public class WordCount {
+public class WordCountHW3 {
     static private final HashMap<String, Integer> map = new HashMap<>();
     static void updateMap(StringBuilder sb) {
         String key;

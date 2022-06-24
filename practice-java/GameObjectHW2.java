@@ -1,14 +1,12 @@
-package HW;
-
-public abstract class GameObject {
+public abstract class GameObjectHW2 {
     protected int x, y;
-    public GameObject(int x, int y) {
+    public GameObjectHW2(int x, int y) {
         this.x = x;
         this.y = y;
     }
     public int getX() { return x; }
     public int getY() { return y; }
-    public boolean collide(GameObject p) {
+    public boolean collide(GameObjectHW2 p) {
         if(this.x == p.getX() && this.y == p.getY())
             return true;
         else
@@ -18,7 +16,7 @@ public abstract class GameObject {
     protected abstract char getShape();
 }
 
-class Thief extends GameObject{
+class Thief extends GameObjectHW2{
     private char pattern;
     public Thief (int x, int y) {
         super(x, y);
@@ -47,7 +45,7 @@ class Thief extends GameObject{
     }
 }
 
-class Police extends GameObject{
+class Police extends GameObjectHW2{
     public Police (int x, int y) {
         super(x, y);
     }
