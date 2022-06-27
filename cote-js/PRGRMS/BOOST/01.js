@@ -14,6 +14,7 @@ const keyboard = [
 	"안배차캐민광재봇북하"].map((str) => str.split(""));
 
 function bfs(startX, startY, end) {
+	if (keyboard[startX][startY] === end) return [startX, startY, 0];
 	const visit = [Array(keyboard[0].length + 2).fill(-1), 
 					...keyboard.map(() => [-1, ...Array(keyboard[0].length).fill(0), -1]),
 					Array(keyboard[0].length + 2).fill(-1)];
@@ -21,8 +22,6 @@ function bfs(startX, startY, end) {
 	const q = new Array();
 	const regular = [[-1, 0], [0, -1], [1, 0], [0, 1]];
 
-	if (keyboard[startX][startY] === end) return [startX, startY, 0];
-	
 	q.push([startX + 1, startY + 1]);
 	while (q.length > idx) {
 		let [curX, curY] = q[idx++];
@@ -43,7 +42,7 @@ function bfs(startX, startY, end) {
 function solution(word) {
 	const answer = [0, 0];
 	let flag = false;
-	let i = 0, j = 0, length;
+	let i, j, length;
 	for (let w of word) {
 		[i, j, length] = bfs(i, j, w);
 		if (length >= 0 && flag) {
