@@ -1,20 +1,18 @@
-function bfs(graph, start, end) {
-	const q = new Array;
+function bfs(visit, start, end) {
+	let idx = 0;
+	const q = new Array();
 	const regular = [[1, 0], [0, 1], [-1, 0], [0, -1]];
 
-	graph[start[0]][start[1]] = 0;
-	q.push([start[0], start[1], 1]);
-	while (q.length > 0) {
-		let [curX, curY, curLevel] = q.shift();
+	q.push([start[0], start[1]]);
+	while (q.length > idx) {
+		let cur = q[idx++];
 		for (let i = 0; i < 4; i++) {
-			const next = [curX + regular[i][0], curY + regular[i][1]];
-			if (0 <= next[0] && next[0] < graph.length && 0 <= next[1] && next[1] < graph[0].length) {
-				if (graph[next[0]][next[1]] == 1) {
-					graph[next[0]][next[1]] = 0;
-					q.push([next[0], next[1], curLevel + 1]);
-					if (next[0] == end[0] && next[1] == end[1])
-						return curLevel + 1;
-				}
+			const next = [cur[0] + regular[i][0], cur[1] + regular[i][1]];
+			if (visit[next[0]][next[1]] == 1) {
+				visit[next[0]][next[1]] = visit[cur[0]][cur[1]] + 1;
+				q.push([next[0], next[1]]);
+				if (next[0] == end[0] && next[1] == end[1])
+					return visit[next[0]][next[1]];
 			}
 		}
 	}
@@ -23,15 +21,17 @@ function bfs(graph, start, end) {
 
 function solution(graph, endX, endY) {
 	let answer = "";
-	answer += bfs(graph, [0, 0], [endX - 1, endY - 1]);
+	//graph복사, 위, 아래, 왼쪽, 오른쪽 모두 -1로 경계표시
+	const visit = [Array(graph[0].length).fill(-1), ...graph.map((line) => [-1, ...line, -1]), Array(graph[0].length).fill(-1)];
+	
+	answer += bfs(visit, [1, 1], [endX, endY]);
 	return answer;
 }
 
-// const inputLines = require("fs").readFileSync("../input.txt").toString().trim().split('\n');
-const inputLines = require("fs").readFileSync("/dev/stdin").toString().trim().split('\n');
-let [targetX, targetY] = inputLines.shift().split(" ").map(item => parseInt(item));
+// const lines = require("fs").readFileSync("../input.txt").toString().trim().split('\n');
+const lines = require("fs").readFileSync("/dev/stdin").toString().trim().split('\n');
+let [targetX, targetY] = lines.shift().split(" ").map(item => parseInt(item));
 let graph = [];
-for (let inputLine of inputLines)
-	graph.push(inputLine.split("").map(item => parseInt(item)));
+for (let line of lines) graph.push(line.split("").map(item => parseInt(item)));
 
 console.log(solution(graph, targetX, targetY));

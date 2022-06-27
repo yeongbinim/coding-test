@@ -1,44 +1,39 @@
 //시간초과 : shift()연산은 O(n)시간... 큐(O(1))처럼 사용하면 안댐
 
-function bfs(graph, startList, emptyNum) {
+function bfs(visit) {
 	let idx = 0;
-	let curX, curY, curLevel, count = 0;
-	const q = new Array;
-	const regular = [[1, 0], [0, 1], [-1, 0], [0, -1]];
-	for (let start of startList) {
-		graph[start[0]][start[1]] = 1;
-		q.push([start[0], start[1], 0]);
+	let cur;
+	let count = 0;
+	const regularXY = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+	const q = new Array();
+
+	for (let [i, row] of visit.entries()) {
+		for (let [j, node] of row.entries()) {
+			if (node === 1)
+				q.push([i, j]);
+			else if(node === 0)
+				count++;
+		}
 	}
 	while (q.length > idx) {
-		[curX, curY, curLevel] = q[idx++];
+		cur = q[idx++];
 		for (let i = 0; i < 4; i++) {
-			const next = [curX + regular[i][0], curY + regular[i][1]];
-			if (0 <= next[0] && next[0] < graph.length && 0 <= next[1] && next[1] < graph[0].length) {
-				if (graph[next[0]][next[1]] == 0) {
-					graph[next[0]][next[1]] = 1;
-					q.push([next[0], next[1], curLevel + 1]);
-					count++;
-				}
+			const next = [cur[0] + regularXY[i][0], cur[1] + regularXY[i][1]];
+			if (visit[next[0]][next[1]] == 0) {
+				visit[next[0]][next[1]] = visit[cur[0]][cur[1]] + 1;
+				q.push([next[0], next[1]]);
+				count--;
 			}
 		}
 	}
-	return emptyNum == count ? curLevel : -1;
+	return count === 0 ? visit[cur[0]][cur[1]] - 1 : -1;
 }
 
 function solution(graph) {
 	let answer = "";
-	let count = 0;
-	const startList = new Array();
-	for (let [i, row] of graph.entries()) {
-		for (let [j, node] of row.entries()) {
-			if (node != 0) {
-				count++;
-				if (node == 1)
-					startList.push([i, j]);
-			}
-		}
-	}
-	answer += bfs(graph, startList, graph.length * graph[0].length - count);
+	//graph복사, 위, 아래, 왼쪽, 오른쪽 모두 -1로 경계표시
+	const visit = [Array(graph[0].length).fill(-1), ...graph.map((line) => [-1, ...line, -1]), Array(graph[0].length).fill(-1)];
+	answer += bfs(visit);
 	return answer;
 }
 
