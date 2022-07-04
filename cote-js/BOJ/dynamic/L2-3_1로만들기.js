@@ -7,10 +7,10 @@ function solution(X) {
 		if (i % 2 === 0 && d[i / 2] < min) min = d[i / 2];
 		d[i] = min + 1;
 	}
-	return d[X].toString();
+	return d[X]
 }
 // const lines = require("fs").readFileSync("../input.txt").toString().trim().split('\n');
 const lines = require("fs").readFileSync("/dev/stdin").toString().trim().split('\n');
 const X = parseInt(lines[0]);
 
-console.log(solution(X));
+console.log(solution(X).toString());

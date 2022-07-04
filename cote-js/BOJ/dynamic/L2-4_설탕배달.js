@@ -4,7 +4,7 @@ function solution(kg) {
 	d[5] = 1;
 	for (let k = 6; k <= kg; k++)
 		d[k] = Math.min(d[k - 3], d[k - 5]) + 1;
-	return d[kg] < 5001 ? d[kg].toString() : "-1";
+	return d[kg] < 5001 ? d[kg] : -1;
 }
 
 //야매
@@ -23,11 +23,11 @@ function solution2(kg) {
 		count++;
 		kg -= 3;
 	}
-	return answer.toString();
+	return answer;
 }
 
 // const line = require("fs").readFileSync("../input.txt").toString().trim().split('\n');
 const lines = require("fs").readFileSync("/dev/stdin").toString().trim().split('\n');
 const kg = parseInt(lines[0]);
 
-console.log(solution(kg));
+console.log(solution(kg).toString());
