@@ -1,9 +1,14 @@
 //p: 0상 1우 2하 3좌
 function move(graph, p) {
 	let count = 0;
-	const newGraph = [...graph.map(line => [...line])];
-	if (p === 0) {
-		for (let )
+	const newGraph = graph.map(line => [...line]);
+	if (p === 1) {
+		const newGraph = graph.map(line => {
+			let end = line.length - 1;
+			while (line[end] !== 0) {
+				
+			}//[0, 2, 2, 4, 2, 0]
+		});
 	}
 	return count === 0 ? -1 : newGraph;
 }
