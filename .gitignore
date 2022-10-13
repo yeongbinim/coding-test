@@ -3,7 +3,7 @@ node_modules/
 test.js
 .env
 *.log
-.vscode
+.vscode/
 .firebase
 backend/public/apidoc
-coverage
+coverage/
